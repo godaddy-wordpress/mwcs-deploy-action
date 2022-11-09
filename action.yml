@@ -1,0 +1,23 @@
+---
+name: 'Managed WooCommerce Stores Deploy'
+description: 'Deploy apps to Managed WooCommerce Stores'
+inputs:
+  MWCS_DEPLOY_DEST:
+    description: 'Set the subdirectory to deploy to examples: /httpdocs, /httpdocs/wp-content/plugins/my-plugin, /app'
+    required: true
+  MWCS_INTEGRATION_ID:
+    description: 'Unique id for the integration'
+    required: true
+  MWCS_INTEGRATION_SECRET:
+    description: 'Authentication token'
+    required: true
+  MWCS_APP_ID:
+    description: 'Id of the app you want to deploy to'
+    required: true
+  MWCS_WORKING_DIR:
+    description: 'The directory that you want deployed, based on the build files path. i.e. $GITHUB_WORKSPACE'
+    default: "${{github.workspace}}"
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://godaddy-wordpress/mwcs-deploy:1'
