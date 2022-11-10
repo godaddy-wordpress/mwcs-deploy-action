@@ -1,0 +1,29 @@
+name: publish
+on:
+  workflow_dispatch:
+    inputs:
+      build-only:
+        required: true
+        description: Only Build Image, skip publishing
+        type: boolean
+        default: false
+jobs:
+  publish-mwcs-deploy-image:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v2
+  - name: Login to GitHub Container Registry
+    uses: docker/login-action@v1
+    with:
+      registry: ghcr.io
+      username: ${{ github.actor }}
+      password: ${{ secrets.GITHUB_TOKEN }}
+  - name: Only Build MWCS Deploy
+    if: ${{input.build-only == true}}
+    run: |
+      docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
+  - name: Build the MWCS Deploy Docker image and Publish
+    if: ${{input.build-only == false}}
+    run: |
+      docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
+      docker push ghcr.io/godaddy-wordpress/mwcs-deploy:latest

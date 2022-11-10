@@ -20,4 +20,4 @@ inputs:
     required: false
 runs:
   using: 'docker'
-  image: 'docker://godaddy-wordpress/mwcs-deploy:1'
+  image: 'ghcr.io/godaddy-wordpress/mwcs-deploy:latest'
