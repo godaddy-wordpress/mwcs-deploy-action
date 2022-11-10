@@ -19,7 +19,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Only Build MWCS Deploy
-      if: ${{input.build-only == true}}
+      if: ${{inputs.build-only == true}}
       run: |
         docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
     - name: Build the MWCS Deploy Docker image and Publish
