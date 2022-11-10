@@ -1,4 +1,4 @@
-name: publish
+name: Publish Image to ghcr.io
 on:
   workflow_dispatch:
     inputs:
@@ -8,22 +8,22 @@ on:
         type: boolean
         default: false
 jobs:
-  publish-mwcs-deploy-image:
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
-  - name: Login to GitHub Container Registry
-    uses: docker/login-action@v1
-    with:
-      registry: ghcr.io
-      username: ${{ github.actor }}
-      password: ${{ secrets.GITHUB_TOKEN }}
-  - name: Only Build MWCS Deploy
-    if: ${{input.build-only == true}}
-    run: |
-      docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
-  - name: Build the MWCS Deploy Docker image and Publish
-    if: ${{input.build-only == false}}
-    run: |
-      docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
-      docker push ghcr.io/godaddy-wordpress/mwcs-deploy:latest
+  Publish_MWCS_Deploy_Image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Only Build MWCS Deploy
+      if: ${{input.build-only == true}}
+      run: |
+        docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
+    - name: Build the MWCS Deploy Docker image and Publish
+      if: ${{input.build-only == false}}
+      run: |
+        docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
+        docker push ghcr.io/godaddy-wordpress/mwcs-deploy:latest
