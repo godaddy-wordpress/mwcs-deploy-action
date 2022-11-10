@@ -102,6 +102,7 @@ DEPLOY_HTTP_CODE_FILE=$(mktemp)
 
 # Switch to curl for streaming here as httpie seems to have issues actually streaming this data back even though it has line breaks
 set -o pipefail
+set +o errexit
 curl \
   --fail-with-body \
   --show-error \
