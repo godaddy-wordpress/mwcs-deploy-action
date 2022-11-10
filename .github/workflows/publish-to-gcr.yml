@@ -23,7 +23,7 @@ jobs:
       run: |
         docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
     - name: Build the MWCS Deploy Docker image and Publish
-      if: ${{input.build-only == false}}
+      if: ${{inputs.build-only == false}}
       run: |
         docker build . --tag ghcr.io/godaddy-wordpress/mwcs-deploy:latest
         docker push ghcr.io/godaddy-wordpress/mwcs-deploy:latest
