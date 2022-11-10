@@ -21,6 +21,7 @@ MWCS_INTEGRATION_ID=${INPUT_MWCS_INTEGRATION_ID:-${MWCS_INTEGRATION_ID:-}}
 MWCS_APP_ID=${INPUT_MWCS_APP_ID:-${MWCS_APP_ID:-}}
 MWCS_WORKING_DIR=${INPUT_MWCS_WORKING_DIR:-${MWCS_WORKING_DIR:-"$(pwd)"}}
 MWCS_API_URL=${INPUT_MWCS_API_URL:-${MWCS_API_URL:-"https://mgmt.mwcs.godaddy.com/api"}}
+LOG_LEVEL=${LOG_LEVEL:-"info"}
 
 if [[ -z "$MWCS_DEPLOY_DEST" ]]; then
     echo "MWCS_DEPLOY_DEST is required"
@@ -67,6 +68,9 @@ URL_LOOKUP_OUTPUT=$(mktemp)
 URL_LOOKUP_URL="${MWCS_API_URL}/apps/integration/${MWCS_INTEGRATION_ID}/endpoint?appId=${MWCS_APP_ID}"
 
 echo "Lookup app's deploy URL"
+if [[ $LOG_LEVEL == 'debug' ]]; then
+    echo $URL_LOOKUP_URL
+fi
 if http --check-status --ignore-stdin --timeout=10 GET "$URL_LOOKUP_URL" \
     "X-Token: $MWCS_INTEGRATION_SECRET" \
     > $URL_LOOKUP_OUTPUT
@@ -90,6 +94,9 @@ else
 fi
 
 echo "Deploying"
+if [[ $LOG_LEVEL == 'debug' ]]; then
+    echo $DEPLOY_URL
+fi
 DEPLOY_OUTPUT=$(mktemp)
 DEPLOY_HTTP_CODE_FILE=$(mktemp)
 

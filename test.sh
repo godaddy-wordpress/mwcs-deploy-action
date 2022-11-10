@@ -21,6 +21,7 @@ docker run --rm \
     -e MWCS_INTEGRATION_SECRET=$MWCS_INTEGRATION_SECRET \
     -e MWCS_INTEGRATION_ID=$MWCS_INTEGRATION_ID \
     -e INPUT_MWCS_APP_ID=$MWCS_APP_ID \
+    -e LOG_LEVEL=debug \
     -v "$(pwd)/test":/test \
     -w /test \
     godaddy-wordpress/mwcs-deploy
