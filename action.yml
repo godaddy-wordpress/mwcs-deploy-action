@@ -1,6 +1,9 @@
 ---
 name: 'Managed WooCommerce Stores Deploy'
 description: 'Deploy apps to Managed WooCommerce Stores'
+branding:
+    icon: "upload"
+    color: "gray-dark"
 inputs:
   MWCS_DEPLOY_DEST:
     description: 'Set the subdirectory to deploy to examples: /httpdocs, /httpdocs/wp-content/plugins/my-plugin, /app'
