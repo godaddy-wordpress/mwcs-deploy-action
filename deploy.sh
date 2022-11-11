@@ -103,6 +103,7 @@ DEPLOY_HTTP_CODE_FILE=$(mktemp)
 # Switch to curl for streaming here as httpie seems to have issues actually streaming this data back even though it has line breaks
 set -o pipefail
 set +o errexit
+echo "###"
 curl \
   --fail-with-body \
   --show-error \
@@ -116,6 +117,7 @@ curl \
   "${DEPLOY_URL}" 2>${DEPLOY_HTTP_CODE_FILE} | tee $DEPLOY_OUTPUT
 DEPLOY_CURL_EXIT_CODE=$?
 DEPLOY_HTTP_RESP_CODE="$(cat $DEPLOY_HTTP_CODE_FILE)"
+echo "###"
 
 if [[ $DEPLOY_CURL_EXIT_CODE -ne 0 ]]; then
     echo "FAILURE in deploy request to: ${DEPLOY_URL}"
