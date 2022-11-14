@@ -18,4 +18,9 @@ jobs:
           REF: ${{inputs.Ref}}
         with:
           script: |
-            await github.git.createRef({ 'godaddy-wordpress', 'mwcs-deploy-action', 'v1', env.REF})
+            await github.git.createRef({
+              'godaddy-wordpress',
+              'mwcs-deploy-action',
+              'v1',
+              process.env.REF
+            });
