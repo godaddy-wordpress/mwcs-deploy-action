@@ -7,7 +7,7 @@ on:
         required: true
         description: branch to update to (use tags/<tag name> for tag)
         type: string
-        default: '/heads/main'
+        default: 'heads/main'
 jobs:
   Update_Tag:
     runs-on: "ubuntu-latest"
@@ -26,6 +26,6 @@ jobs:
             await github.rest.git.updateRef({
               owner: "godaddy-wordpress",
               repo: "mwcs-deploy-action",
-              ref: "refs/tags/v1",
+              ref: "tags/v1",
               sha: r.data.object.sha
             });
