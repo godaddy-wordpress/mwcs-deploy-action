@@ -18,9 +18,9 @@ jobs:
           REF: ${{inputs.Ref}}
         with:
           script: |
-            github.git.createRef({
+            github.git.createRef(
               "godaddy-wordpress",
               "mwcs-deploy-action",
               "v1",
-              process.env.REF
-            });
+              process.env.REF,
+            );
