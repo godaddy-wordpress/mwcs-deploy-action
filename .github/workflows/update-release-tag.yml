@@ -13,14 +13,14 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Update Tag
-        uses: actions/github-script@v2
+        uses: actions/github-script@v6
         env:
           REF: ${{inputs.Ref}}
         with:
           script: |
-            await github.git.createRef({
-              'godaddy-wordpress',
-              'mwcs-deploy-action',
-              'v1',
+            github.git.createRef({
+              "godaddy-wordpress",
+              "mwcs-deploy-action",
+              "v1",
               process.env.REF
             });
