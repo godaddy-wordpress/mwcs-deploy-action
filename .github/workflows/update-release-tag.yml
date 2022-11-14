@@ -26,6 +26,6 @@ jobs:
             await github.rest.git.createRef({
               owner: "godaddy-wordpress",
               repo: "mwcs-deploy-action",
-              ref: "/refs/heads/v1",
+              ref: "/refs/tags/v1",
               sha: r.data.object.sha
             });
