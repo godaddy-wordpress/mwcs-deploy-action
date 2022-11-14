@@ -23,7 +23,7 @@ jobs:
               repo: "mwcs-deploy-action",
               ref: process.env.REF
             });
-            await github.rest.git.createRef({
+            await github.rest.git.updateRef({
               owner: "godaddy-wordpress",
               repo: "mwcs-deploy-action",
               ref: "refs/tags/v1",
