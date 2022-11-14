@@ -1,0 +1,21 @@
+---
+name: Update Release tag
+on:
+  workflow_dispatch:
+    inputs:
+      Ref:
+        required: true
+        description: branch to update to
+        type: string
+        default: 'main'
+jobs:
+  Update_Tag:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Update Tag
+        uses: actions/github-script@v2
+        env:
+          REF: ${{inputs.Ref}}
+        with:
+          script: |
+            await github.git.createRef({ 'godaddy-wordpress', 'mwcs-deploy-action', 'v1', env.REF})
