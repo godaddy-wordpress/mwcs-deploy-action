@@ -21,11 +21,11 @@ jobs:
             const r = github.git.getRef({
               owner: "godaddy-wordpress",
               repo: "mwcs-deploy-action",
-              ref: process.env.REF,
+              ref: process.env.REF
             });
             github.git.createRef({
               owner: "godaddy-wordpress",
-              repo; "mwcs-deploy-action",
+              repo: "mwcs-deploy-action",
               ref: "/refs/heads/v1",
-              sha: r.object.sha,
+              sha: r.object.sha
             });
